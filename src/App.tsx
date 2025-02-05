@@ -7,13 +7,15 @@ import TodoList from "./components/TodoList";
 function App() {
 
   const [todos, setTodos] = useState([])
+  const [todoValue, setTodoValue] = useState('')
 
   const handleAddTodos = (newTodo) => {
     const newTodoList = [...todos, newTodo];
     setTodos(newTodoList);
   }
   const handleEditTodos = (index) => {
-
+    setTodoValue(todos[index])
+    handleDeleteTodos(index);
   }
 
   const handleDeleteTodos = (index) => {
@@ -25,8 +27,8 @@ function App() {
 
   return (
   <>
-    <TodoInput handleAddTodos={handleAddTodos}/>
-    <TodoList todos={todos} handleDeleteTodos={handleDeleteTodos}/>
+    <TodoInput handleAddTodos={handleAddTodos} todoValue={todoValue} setTodoValue={setTodoValue}/>
+    <TodoList todos={todos} handleDeleteTodos={handleDeleteTodos} handleEditTodos={handleEditTodos}/>
   </>
   );
 }
